@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar with Search Box</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Unicons CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<style>
+    /* CSS Styles */
+
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #16171D;
+}
+
+.navbar {
+    background-color: #16171D;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0 20px;
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 50px;
+    box-shadow: 0 0 40px rgba(255, 2, 8, 0.5);
+}
+
+.search-bar {
+    margin-right: 20px;
+    
+    
+}
+
+.search-bar input[type="text"] {
+    width: 500px;
+    background: #212030;
+    color: white;
+    height: 70px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #D7D7D7; /* Set your desired placeholder color */
+}
+.header_song {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.header_songs {
+    border: 0px solid red;
+}
+
+.header_songs p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #D7D7D8;
+    text-align: center;
+}
+
+.header_songs_logo {
+    width: 170px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.music-player {
+    width:300px;
+    height: 100px;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-width: 1000px;
+    z-index: 9999;
+}
+
+.music-player-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.music-player-title {
+    font-size: 30px;
+    padding: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+.music-player-controls {
+    display: flex;
+    align-items: center;
+}
+
+.music-player-controls button {
+    background-color: transparent;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin: 0 10px;
+}
+</style>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://i.postimg.cc/WzgPmBpg/Untitled10-20240205173941.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </nav>
+
+    <!-- Table of Songs -->
+    <div class="header_song">
+        <table style="border:px solid blue; border-spacing: 100px;">
+            <tr class="header_songs">
+                <td>
+                    <img class="header_songs_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdlpJkYFMr7Ojh4rake_BPUlEFvl-LIQSQPg&usqp=CAU" onclick="playSong('https://raag.fm/files/mp3/128/Hindi-Singles/24945/Zihaal E Miskin - (Raag.Fm).mp3', 'Zihale Maskin')">
+                    <p>Zihale Maskin</p>
+                </td>
+                <td>
+                    <img class="header_songs_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQyJDwo4G9FNsQ8rCHvRzdfwzbjB-h1xsaNg&usqp=CAU" onclick="playSong('https://raag.fm/files/mp3/128/Hindi/2565984/Afreen Afreen - (Raag.Fm).mp3', 'Afreen Afreen')">
+                    <p>Afreen Afreen</p>
+                </td>
+                <td>
+                    <img class="header_songs_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpgd02dVTUK46jJ8ZU6rNsVmynjNsBz8z1Dw&usqp=CAU" onclick="playSong('https://raag.fm/files/mp3/128/Punjabi-Singles/25527/Kalaastar - (Raag.Fm).mp3', 'Kalaastar')">
+                    <p>Kalaastar</p>
+                </td>
+                <td>
+                    <img class="header_songs_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ-PtV54o9W2gLuUzYr7fPeTlT7NMClU2i3w&usqp=CAU" onclick="playSong('https://raag.fm/files/mp3/128/Hindi/1139549/Tum Hi Ho - (Raag.Fm).mp3', 'Tum hi ho')">
+                    <p>Tum hi ho</p>
+                </td>                
+                <!-- Add more song entries as needed -->
+            </tr>
+        </table>
+    </div>
+
+    <!-- mini Music Player -->
+    <div id="music-player" class="music-player">
+        <div class="music-player-inner">
+            <div class="music-player-title" id="music-title">Song Title</div>
+            <div class="music-player-controls">
+                <button id="play-pause-btn"><i class="uil uil-play"></i></button>
+                <button id="stop-btn"><i class="uil uil-stop"></i></button>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- JavaScript -->
+    <script>
+        let audio = null;
+
+        function playSong(songFileName, songTitle) {
+            if (audio && !audio.paused) {
+                audio.pause();
+            }
+
+            audio = new Audio(songFileName);
+            audio.play();
+            document.getElementById('music-player').style.display = 'block';
+            document.getElementById('music-title').innerText = songTitle;
+
+            var playPauseBtn = document.getElementById('play-pause-btn');
+            playPauseBtn.innerHTML = '<i class="uil uil-pause"></i>';
+            playPauseBtn.onclick = function() {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="uil uil-pause"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="uil uil-play"></i>';
+                }
+            }
+
+            var stopBtn = document.getElementById('stop-btn');
+            stopBtn.onclick = function() {
+                audio.pause();
+                audio.currentTime = 0;
+                playPauseBtn.innerHTML = '<i class="uil uil-play"></i>';
+            }
+        }
+    </script>
+</body>
+</html>
